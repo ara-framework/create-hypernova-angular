@@ -2,7 +2,7 @@ import 'core-js/proposals/reflect-metadata';
 import 'zone.js';
 
 import * as hypernova from 'hypernova/server'
-import { renderAngular } from 'hypernova-angular'
+import { renderAngular } from 'hypernova-angular/server'
 import * as express from 'express'
 import * as path from 'path'
 

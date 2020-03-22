@@ -1,4 +1,4 @@
-import 'core-js/proposals/reflect-metadata';
+import 'core-js/features/reflect'
 import 'zone.js';
 
 import * as hypernova from 'hypernova/server'

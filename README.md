@@ -24,6 +24,12 @@ sao create-hypernova-angular my-project
 sao marconi1992/create-hypernova-angular my-project
 ```
 
+## Using [Ara CLI](https://github.com/ara-framework/ara-cli)
+
+```bash
+ara new:nova -t angular
+```
+
 ## License
 
 MIT &copy; [marconi1992](github.com/marconi1992)

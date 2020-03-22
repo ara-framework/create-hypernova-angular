@@ -33,6 +33,11 @@ const server = {
   resolve: {
     extensions: ['.ts', '.tsx', '.js'],
   },
+  optimization: {
+    // keep minimization off
+    // workaround for https://github.com/angular/angular-cli/issues/10635
+    minimize: false
+  },
   module: {
     rules: [
       { test: /\.ts?$/, loader: 'ts-loader' },

@@ -1,5 +1,4 @@
 const path = require('path');
-const NodemonPlugin = require('nodemon-webpack-plugin');
 const ngw = require('@ngtools/webpack');
 
 const browser = (env, argv) => ({
@@ -32,38 +31,4 @@ const browser = (env, argv) => ({
   ]
 });
 
-const server = {
-  devtool: 'inline-source-map',
-  target: 'node',
-  entry: './src/server.main.ts',
-  output: {
-    path: path.resolve(__dirname, 'dist'),
-    publicPath: '/dist/',
-    filename: 'server.js',
-  },
-  resolve: {
-    extensions: ['.ts', '.tsx', '.js'],
-  },
-  optimization: {
-    // keep minimization off
-    // workaround for https://github.com/angular/angular-cli/issues/10635
-    minimize: false
-  },
-  module: {
-    rules: [
-      {
-        test: /\.ts?$/,
-        loader: [
-          'ts-loader',
-          'angular2-template-loader'
-        ]
-      },
-      { test: /\.html$/, loader: 'raw-loader' },
-    ],
-  },
-  plugins: [
-    new NodemonPlugin(),
-  ],
-};
-
-module.exports = [browser, server];
+module.exports = browser

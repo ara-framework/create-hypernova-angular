@@ -1,26 +1,35 @@
 import 'core-js/features/reflect'
 import 'zone.js';
 
-import { load, mountComponent, loadById } from 'hypernova-angular'
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
-import { ExampleModule } from './components/example/example.module'
-import { ExampleComponent } from './components/example/example.component'
+import { AppModule } from './app.module';
+import { load, loadById, HypernovaModuleFactory } from 'hypernova-angular';
 
-const render = (name, { node, data }) => {
-  if (name === 'Example') {
-    return mountComponent(ExampleComponent, ExampleModule, node, data)
-  }
+import { CompilerFactory, Compiler } from '@angular/core';
+
+const platform = platformBrowserDynamic();
+
+const compilerFactory: CompilerFactory = platform.injector.get(CompilerFactory);
+
+const compiler: Compiler = compilerFactory.createCompiler([])
+
+const moduleFactory = compiler.compileModuleSync(AppModule);
+
+const render = (name: string, placeholder: any) => {
+  const hypernovaModuleFactory = new HypernovaModuleFactory(moduleFactory, name, placeholder);
+
+  platform.bootstrapModuleFactory(hypernovaModuleFactory);
 }
 
 document.addEventListener('NovaMount', (event) => {
   const { name, id } = (<CustomEvent>event).detail
 
-  const payload = loadById(name, id)
+  const placeholder = loadById(name, id)
 
-  if (payload) {
-    render(name, payload)
+  if (placeholder) {
+    render(name, placeholder)
   }
 })
 
-
-load('Example').forEach(render.bind(null, 'Example'))
+load('Example').forEach(render.bind(this, 'Example'));

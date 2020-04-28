@@ -1,9 +1,8 @@
 import { Component, Inject } from '@angular/core'
-import template from './example.component.html'
 import { HYPERNOVA_DATA } from 'hypernova-angular'
 
 @Component({
-  template,
+  templateUrl: './example.component.html',
 })
 export class ExampleComponent{
   title: string = 'Angular 6'

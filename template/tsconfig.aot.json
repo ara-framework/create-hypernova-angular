@@ -9,5 +9,5 @@
     "lib": ["es6", "dom"],
     "typeRoots": ["node_modules/@types"]
   },
-  "exclude": ["node_modules", "src/browser.aot.main.ts"]
+  "exclude": ["node_modules"]
 }
